@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "title": "Learn Python Decorators",
+        "completed": true
+    },
+    {
+        "id": 2,
+        "title": "Build an API scraper",
+        "completed": false
+    }
+]
