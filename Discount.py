@@ -50,6 +50,5 @@ else:
     print(f"Discount       : {discount_percentage}%")
     print(f"Saved Amount   : ${product_price - result:.2f}")
     print(f"Final Price    : ${result:.2f}")
-
 print("=" * 40)
 print("✨ Thank you for shopping!")
