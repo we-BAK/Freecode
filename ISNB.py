@@ -1,87 +1,98 @@
-def validate_isbn(isbn, length):
-    if len(isbn) != length:
-        print(f'ISBN-{length} code should be {length} digits long.')
-        return
+# 📚 ISBN VALIDATOR SYSTEM
 
-    main_digits = isbn[0:length-1]
-    given_check_digit = isbn[length-1]
+def calculate_check_digit_10(digits):
+    """Calculate ISBN-10 check digit."""
 
-    # Check for invalid non-numeric characters in main_digits
-    if not main_digits.isdigit():
-        print('Invalid character was found.')
-        return
+    total = sum(digit * (10 - index) for index, digit in enumerate(digits))
 
-    main_digits_list = [int(digit) for digit in main_digits]
-
-    # Calculate the check digit from other digits
-    if length == 10:
-        expected_check_digit = calculate_check_digit_10(main_digits_list)
-    else:
-        expected_check_digit = calculate_check_digit_13(main_digits_list)
-
-    # Check if the given check digit matches with the calculated check digit
-    if given_check_digit == expected_check_digit:
-        print('Valid ISBN Code.')
-    else:
-        print('Invalid ISBN Code.')
-
-
-def calculate_check_digit_10(main_digits_list):
-    digits_sum = 0
-    for index, digit in enumerate(main_digits_list):
-        digits_sum += digit * (10 - index)
-
-    result = 11 - digits_sum % 11
+    result = 11 - (total % 11)
 
     if result == 11:
-        expected_check_digit = '0'
+        return "0"
     elif result == 10:
-        expected_check_digit = 'X'
+        return "X"
+
+    return str(result)
+
+
+def calculate_check_digit_13(digits):
+    """Calculate ISBN-13 check digit."""
+
+    total = 0
+
+    for index, digit in enumerate(digits):
+        total += digit * (1 if index % 2 == 0 else 3)
+
+    result = (10 - total % 10) % 10
+
+    return str(result)
+
+
+def validate_isbn(isbn, length):
+    """Validate ISBN code."""
+
+    # Check length
+    if len(isbn) != length:
+        return f"❌ ISBN-{length} must contain exactly {length} digits."
+
+    # Separate main digits and check digit
+    main_digits = isbn[:-1]
+    given_check_digit = isbn[-1].upper()
+
+    # Validate characters
+    if not main_digits.isdigit():
+        return "❌ Invalid characters found in ISBN."
+
+    digits = [int(digit) for digit in main_digits]
+
+    # Calculate expected check digit
+    if length == 10:
+        expected = calculate_check_digit_10(digits)
     else:
-        expected_check_digit = str(result)
+        expected = calculate_check_digit_13(digits)
 
-    return expected_check_digit
+    # Compare digits
+    if given_check_digit == expected:
+        return "✅ Valid ISBN Code!"
 
-
-def calculate_check_digit_13(main_digits_list):
-    digits_sum = 0
-    for index, digit in enumerate(main_digits_list):
-        if index % 2 == 0:
-            digits_sum += digit * 1
-        else:
-            digits_sum += digit * 3
-
-    result = 10 - digits_sum % 10
-
-    if result == 10:
-        expected_check_digit = '0'
-    else:
-        expected_check_digit = str(result)
-
-    return expected_check_digit
+    return (
+        f"❌ Invalid ISBN Code.\n"
+        f"Expected check digit: {expected}\n"
+        f"Received check digit: {given_check_digit}"
+    )
 
 
 def main():
-    user_input = input('Enter ISBN and length: ')
 
-    if "," not in user_input:
-        print("Enter comma-separated values.")
-        return
+    print("=" * 45)
+    print("          📚 ISBN VALIDATOR")
+    print("=" * 45)
 
-    values = user_input.split(',')
-    isbn = values[0].strip()
+    user_input = input(
+        "Enter ISBN and length (example: 9783161484100,13): "
+    )
 
     try:
-        length = int(values[1].strip())
+        isbn, length = user_input.split(",")
+        isbn = isbn.strip()
+        length = int(length.strip())
+
     except ValueError:
-        print('Length must be a number.')
+        print("❌ Please enter values in format: ISBN,length")
         return
 
-    if length == 10 or length == 13:
-        validate_isbn(isbn, length)
-    else:
-        print('Length should be 10 or 13.')
+
+    if length not in (10, 13):
+        print("❌ ISBN length must be 10 or 13.")
+        return
 
 
-if __name__ == '__main__':
+    result = validate_isbn(isbn, length)
+
+    print("-" * 45)
+    print(result)
+    print("=" * 45)
+
+
+if __name__ == "__main__":
     main()
