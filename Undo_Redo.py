@@ -37,3 +37,24 @@ class TextEditor:
         return self.current.state
 
 
+# --- Demo Usage ---
+if __name__ == "__main__":
+    editor = TextEditor()
+
+    editor.write("Hello")
+    editor.write(" World")
+    editor.write("!")
+    print("Current Text:", editor.get_text())  # Output: Hello World!
+
+    print("\n--- Undo Twice ---")
+    print("Undo 1:", editor.undo())  # Output: Hello World
+    print("Undo 2:", editor.undo())  # Output: Hello
+
+    print("\n--- Redo Once ---")
+    print("Redo 1:", editor.redo())  # Output: Hello World
+
+    print("\n--- Write New Text ---")
+    editor.write(" Everyone")
+    print("Current Text:", editor.get_text())  # Output: Hello World Everyone
+
+    print("Redo attempt:", editor.redo())  # Output: Hello World Everyone
