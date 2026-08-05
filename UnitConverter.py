@@ -6,8 +6,6 @@ def kg_to_lbs(kg):
 
 def celsius_to_fahrenheit(celsius):
     return (celsius * 9 / 5) + 32
-
-
 print("=== 🔄 Simple Unit Converter ===")
 print("1. Meters to Feet")
 print("2. Kilograms to Pounds")
