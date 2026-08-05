@@ -8,9 +8,7 @@ print("=== 🔄 Simple Unit Converter ===")
 print("1. Meters to Feet")
 print("2. Kilograms to Pounds")
 print("3. Celsius to Fahrenheit")
-
 choice = input("\nSelect a conversion (1-3): ")
-
 if choice == "1":
     meters = float(input("Enter distance in meters: "))
     print(f"👉 {meters} meters = {meters_to_feet(meters):.2f} feet")
