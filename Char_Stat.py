@@ -19,7 +19,6 @@ class GameCharacter:
             self._health = 100
         else:
             self._health = value
-
     @property
     def mana(self):
         return self._mana

@@ -166,7 +166,6 @@ def create_spend_chart(categories: list[Category]) -> str:
     chart += _chart_labels(categories)
     return chart
 
-
 if __name__ == "__main__":
     food = Category("Food")
     food.deposit(1000, "deposit")

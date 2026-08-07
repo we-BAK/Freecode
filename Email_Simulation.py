@@ -243,7 +243,5 @@ def demo() -> None:
     if hello:
         ramy.reply(hello, "Hi Tory, hope you are fine.")
     tory.check_inbox()
-
-
 if __name__ == "__main__":
     demo()
