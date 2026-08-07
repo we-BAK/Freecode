@@ -33,6 +33,5 @@ elif choice == "3":
     h = float(input("Enter height: "))
     area = calculate_triangle_area(b, h)
     print(f"👉 Area of Triangle = {area:.2f}")
-
 else:
     print("❌ Invalid choice! Please select 1, 2, or 3.")
