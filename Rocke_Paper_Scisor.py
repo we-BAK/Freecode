@@ -17,7 +17,6 @@ while True:
 
     computer_choice = random.choice(options)
     print(f"Computer chose: {computer_choice}")
-
     # Determine winner
     if user_choice == computer_choice:
         print("🤝 It's a tie!\n")
