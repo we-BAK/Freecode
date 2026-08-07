@@ -26,7 +26,6 @@ class Pawn(Player):
 
     def __init__(self):
         super().__init__()
-        # 1 unit up, down, left, right
         self.moves = [
             (0, 1),   # Up
             (0, -1),  # Down
@@ -35,7 +34,6 @@ class Pawn(Player):
         ]
 
     def level_up(self):
-        # Adds the 4 diagonal movements
         diagonal_moves = [
             (1, 1),    # Up-Right
             (-1, 1),   # Up-Left
