@@ -48,14 +48,11 @@ while True:
                     print(f"🗑️ Removed '{item_cap}'.")
                 else:
                     print(f"❌ '{item_to_remove}' is not in your list.")
-
     elif choice == "4":
         grocery_list.clear()
         print("\n🧹 Grocery list cleared!")
-
     elif choice == "5":
         print("\nGoodbye! Happy shopping! 🛍️")
         break
-
     else:
         print("\n❌ Invalid choice. Please enter a number between 1 and 5.")
