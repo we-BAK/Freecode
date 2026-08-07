@@ -18,10 +18,8 @@ class HashTable:
 
         if hashed_key in self.collection and key in self.collection[hashed_key]:
             del self.collection[hashed_key][key]
-
             if not self.collection[hashed_key]:
                 del self.collection[hashed_key]
-
     def lookup(self, key: str):
         hashed_key = self.hash(key)
 

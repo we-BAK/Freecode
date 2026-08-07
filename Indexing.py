@@ -17,8 +17,7 @@ class DatabaseIndex:
         if idx < len(self.keys) and self.keys[idx] == key:
             return self.values[idx]
         return "Record Not Found"
-
-# Demo
+    # Demos
 db = DatabaseIndex()
 for i in range(0, 1000000, 2):  # Populate 500k records (even numbers)
     db.insert(i, f"User_Data_{i}")
