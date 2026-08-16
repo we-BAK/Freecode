@@ -10,3 +10,5 @@ def shorten_url(long_url):
         key=generate_key()
     url_map[key]=long_url
     return key
+def get_Original_url(short_key):
+    return url_map.get(short_key,"URL not found")
